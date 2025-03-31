@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Configuración del documento -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Archivo Excel</title>
+    <!-- Enlace a la hoja de estilos de Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /*fondo*/
+        .body-bg{
+            background-image: url('https://th.bing.com/th/id/R.5595525f6357b3971de0a433eb22ce5d?rik=%2blaGzea3SVtsQg&pid=ImgRaw&r=0');/*establece imagen de fondo*/
+            background-size: cover;/*ajusta la imagen que cubra todo el contenedor sin distorsionarse*/
+            background-position: center;/*centra la imagen de fondo*/
+            background-attachment: fixed;/*fija la imagen de fondo para que no se desplace al hacer scroll*/
+            position: relative;/*posiciona el elemento relativo a su posición norma sin sacarlo de flujo*/
+        }
+        /*diseño div bienvenida*/
+        .welcome-screen{
+            position: absolute;/*fija en la pantalla el diseño sin imortar el scroll*/
+            top: 4%;
+            bottom: 6%;
+            left: 10%;
+            right: 10%;
+            width: 70%;/*ocupa ese porcentaje de ancho en la pantalla*/
+            height: 91%;/*ocupa ese porcentaje de alto en la pantalla*/
+            background: rgb(255, 255, 255);/*color fondo div*/
+            display: flex;/*Activa Flexbox para organizar el contenido*/
+            justify-content: center;/*Centra los elementos en el eje horizontal*/
+            align-items: center;/*Centra los elementos en el eje vertical*/
+            flex-direction: column;/*Apila los elementos en columna*/
+            text-align: center;/*Alinea el texto al centro*/
+            z-index: 10;/*Da prioridad sobre otros elementos con menor z-index*/
+            border-radius: 20px; /* Bordes redondeados */
+            box-shadow: 0px 0px 30px rgba(6, 153, 18, 0.738); /* Sombra div: movimiento en x, y, nitides de sombre, color*/
+        }
+        .welcome-text{
+            /*tamaño, tipo, color, sombra*/
+            font-size: 60px;
+            font-weight: bold;
+            color: green;
+            padding: 0px 0px 100px 0px;/*boton separado de text*/
+            text-shadow: 10px 20px 50px rgb(13, 86, 21);/* Sombra texto: movimiento en x, y, nitides de sombre, color*/
+        }
+        .welcome-button{
+            font-weight: bold;
+            background-color: green;
+            color: white;
+            padding: 15px 30px;/*espcio interno sup e inf, espacio interno left y right*/
+            border: 2px solid rgb(12, 70, 14);
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;/*cambia el cursor al pasar por encima*/
+            margin-top: 0px;/*para separar el boton del texto: 0 porque el paddin .welcome-text lo hace*/
+        }
+        /*diseño capa de fondo*/
+        .overlay{
+            position: fixed;
+            /*que se ubique desde el top y left*/
+            top: 0;
+            left: 0;
+            /*ocupe el 100% de alto y ancho*/
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.588); /*Opacidad ajustable*/
+            z-index: 1;/*su prioridad es irrelevante por eso 1*/
+        }
+        /* Caja principal donde se encuentran los inputs y el botón */
+        .content-container {
+            position: relative;
+            z-index: 9;/*segundo div mas relevante*/
+            max-width: 500px; /* Ancho máximo de la caja */
+            background-color: white; 
+            padding: 35px;
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0px 0px 100px rgb(0, 0, 0); /* Sombra para resaltar la caja */
+        }
+    </style>
+</head>
+<body class="body-bg">
+    <!--Capa de sombra para mejorar el contraste del contenido-->
+    <div class="overlay"></div>
+
+    <!-- Pantalla de bienvenida -->
+    <div class="welcome-screen" id="bienvenida">
+        <div class="welcome-text">!Hola, Bienvenido¡</div>
+        <button class="welcome-button" onclick="document.getElementById('bienvenida').style.display='none';">Empezar</button>
+    </div>
+
+    <!-- Contenedor principal centrado en la pantalla -->
+    <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;" id="formulario">
+        <div class="content-container">
+            <!--mb=margin bottom -->
+            <h2 class="mb-4 text-center" >Cargar Archivo Excel</h2>
+            <form id="inputsFormulario">
+                <!-- Campo de entrada para el nombre de la encuesta -->
+                <div class="mb-3">
+                    <label for="nombreEncuesta" class="form-label">Nombre de la Encuesta</label>
+                    <input type="text" class="form-control" id="nombreEncuesta" placeholder="Ingrese el nombre de la encuesta" required>
+                    <div class="form-text">El archivo con las gráficas se descargará con el nombre ingresado.</div>
+                </div>
+                
+                <!-- Campo de entrada para subir el archivo Excel -->
+                <div class="mb-3">
+                    <label for="fileInput" class="form-label">Selecciona un archivo Excel</label>
+                    <input class="form-control" type="file" id="fileInput" accept=".xls,.xlsx" required>
+                </div>
+
+                <!-- Inputs para definir el rango de iteración -->
+                <div class="mb-3">
+                    <label for="columnaInicio" class="form-label">Columna de inicio (Ej: A, B, C...)</label>
+                    <input type="text" class="form-control text-uppercase" id="columnaInicio" maxlength="1" placeholder="Ej: A" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="columnaFin" class="form-label">Columna de fin (Ej: D, E, F...)</label>
+                    <input type="text" class="form-control text-uppercase" id="columnaFin" maxlength="1" placeholder="Ej: D" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="filaFin" class="form-label">Fila donde terminan las preguntas</label>
+                    <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 50" required>
+                </div>
+                
+                <!-- Botón para enviar el formulario -->
+                <button type="submit" class="btn btn-primary w-100">Subir</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
