@@ -20,5 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Columna de Fin:", columnaFin);
         console.log("Fila donde inician las preguntas:", filaInicio);
         console.log("Fila donde terminan las preguntas:", filaFin);
+
+        
     });
 });
