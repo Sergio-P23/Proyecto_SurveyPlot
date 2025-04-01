@@ -11,13 +11,14 @@ document.addEventListener("DOMContentLoaded", function () {
         const nombreEncuesta = document.getElementById("nombreEncuesta").value;
         const columnaInicio = document.getElementById("columnaInicio").value.toUpperCase();
         const columnaFin = document.getElementById("columnaFin").value.toUpperCase();
+        const filaInicio = document.getElementById("filaInicio").value;
         const filaFin = document.getElementById("filaFin").value;
 
         // Mostrar los valores en la consola
         console.log("Nombre de la Encuesta:", nombreEncuesta);
         console.log("Columna de Inicio:", columnaInicio);
         console.log("Columna de Fin:", columnaFin);
+        console.log("Fila donde inician las preguntas:", filaInicio);
         console.log("Fila donde terminan las preguntas:", filaFin);
     });
 });
-

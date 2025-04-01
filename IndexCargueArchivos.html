@@ -119,6 +119,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <label for="filaInicio" class="form-label">Fila donde inician las preguntas</label>
+                    <input type="number" class="form-control" id="filaInicio" min="1" placeholder="Ej: 50" required>
+                </div>
+
+                <div class="mb-3">
                     <label for="filaFin" class="form-label">Fila donde terminan las preguntas</label>
                     <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 50" required>
                 </div>
@@ -131,6 +136,7 @@
 
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 </body>
 </html>
