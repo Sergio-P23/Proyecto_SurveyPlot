@@ -36,7 +36,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             //Estamos listos para analizar las respuestas de los usuarios en el rango que nos interesa.
             procesarRespuestas(jsonData, colInicio, colFin, filInicio, filFin);
-            alert("Archivo procesado con éxito.");
+            Swal.fire({
+                title: "¡Archivo procesado!",
+                text: "El archivo se procesó con éxito.",
+                imageUrl: "https://cdn-icons-png.flaticon.com/512/845/845646.png",
+                imageWidth: 100,
+                imageHeight: 100,
+                imageAlt: "Éxito",
+                confirmButtonText: "ver graficas"
+              });
         };
         //lee el archivo seleccionado como un bloque binario 
         reader.readAsArrayBuffer(file);
