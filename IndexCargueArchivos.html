@@ -122,8 +122,8 @@
             /* Esto centra exactamente el elemento */
             z-index: 9;
             overflow-y: auto;
-            max-width: 500px;
-            max-height: 500px;
+            width: 900px;
+            max-height: 800px;
             background-color: rgb(255, 255, 255);
             padding: 35px;
             border-radius: 10px;
@@ -131,6 +131,22 @@
             display: none;
             /* Mejor usar esto en lugar de d-none de Bootstrap para consistencia */
         }
+        .download-button {
+            font-weight: bold;
+            background-color: green;
+            color: white;
+            padding: 15px 30px;
+            /*espcio interno sup e inf, espacio interno left y right*/
+            border: 2px solid rgb(12, 70, 14);
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            /*cambia el cursor al pasar por encima*/
+            margin-top: 0px;
+            /*para separar el boton del texto: 0 porque el paddin .welcome-text lo hace*/
+            width: 50%;
+        }
+
     </style>
 </head>
 
@@ -195,9 +211,12 @@
     </div>
 
     <!--contenedor de las graficas-->
-    <div id="graficas" class="d-none container-graficas">
-    </div>
-
+    <div class="container mt-4 d-grid gap-3" id="container-g">
+        <div id="graficas" class="row container-graficas ">
+          <div class="mt-5 col-md-6" id="columna-izquierda"></div>
+          <div class="mt-5 col-md-6" id="columna-derecha"></div>
+        </div>
+      </div>
 
 
     <script src="Individual.js"></script>

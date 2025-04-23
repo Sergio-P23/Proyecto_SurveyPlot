@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     // Muestra la sección de gráficas
                     document.getElementById("graficas").classList.remove("d-none");
                     document.getElementById("graficas").classList.add("d-block");
+                    
                 }
             });
         };
@@ -111,28 +112,37 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(`\nTotal: ${filaFin - filaInicio + 1}\n`);
         });
 
-        // graficas
+        //graficas
         const container = document.getElementById("graficas");
-        container.innerHTML = ""; // Limpia gráficas anteriores si existen
+        container.innerHTML = ""; // Limpiar gráficas anteriores
 
+        // Agregar botón de descarga
+        const downloadBtn = document.createElement("button");
+        downloadBtn.className = "download-button position-absolute top-0 start-50 translate-middle-x mt-2 mb-5";
+        downloadBtn.innerText = "Descargar";
+        downloadBtn.onclick = () => {
+            document.getElementById("container-g").style.display = "none";
+        };
+        container.appendChild(downloadBtn);
+
+        // Recorrer respuestas y crear una gráfica por cada pregunta
         respuestas.forEach((conteo, index) => {
-            // Crear un div contenedor para cada gráfico
-            const chartContainer = document.createElement("div");
-            chartContainer.style.width = "400px";
-            chartContainer.style.height = "400px";
-            chartContainer.style.margin = "20px auto";
+            const col = document.createElement("div");
+            col.className = "col-md-6 mb-4 mt-5";
 
-            // Crear canvas
+            const chartContainer = document.createElement("div");
+            chartContainer.className = "p-3 shadow rounded bg-white";
+            chartContainer.style.height = "400px";
+
             const canvas = document.createElement("canvas");
             canvas.id = `grafica-${index}`;
             chartContainer.appendChild(canvas);
-            container.appendChild(chartContainer);
+            col.appendChild(chartContainer);
+            container.appendChild(col);
 
-            // Extraer valores y etiquetas del conteo
             const labels = Object.keys(conteo);
             const data = labels.map(label => conteo[label]);
 
-            // Crear gráfico de torta
             new Chart(canvas, {
                 type: "pie",
                 data: {
@@ -141,11 +151,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         label: `Pregunta ${index + 1}`,
                         data: data,
                         backgroundColor: [
-                            "#FF6384", // rojo
-                            "#FFCE56", // amarillo
-                            "#36A2EB", // azul
-                            "#4BC0C0", // verde azulado
-                            "#9966FF"  // púrpura
+                            "#6eab46",
+                            "#4270c1",
+                            "#fbbd00",
+                            "#42662a",
+                            "#244276"
                         ],
                         borderColor: "#ffffff",
                         borderWidth: 1
@@ -156,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     plugins: {
                         title: {
                             display: true,
-                            text: `respuestas - Pregunta ${index + 1}`
+                            text: `Respuestas - Pregunta ${index + 1}`
                         },
                         legend: {
                             position: 'bottom'
@@ -169,4 +179,4 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     }
-});
+}); 
