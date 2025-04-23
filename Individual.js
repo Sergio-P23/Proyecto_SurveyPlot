@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const reader = new FileReader();
 
         //El evento onload se activa cuando el archivo se ha leído correctamente
-        reader.onload = function (e){
+        reader.onload = function (e) {
+            console.log("Archivo leído correctamente"); 
             //Convierte el archivo Excel a una estructura binaria que pueda ser procesada por XLSX(e.target.result contiene los datos leídos) 
             const datos = new Uint8Array(e.target.result);
             //almacenamos el libro para trabajar con la funcion XLSX.read
-            const libroTrabajo= XLSX.read(datos, { type: "array" });
+            const libroTrabajo = XLSX.read(datos, { type: "array" });
 
             //analizamos la primera hoja
             const hojarespuestas = libroTrabajo.SheetNames[0];
@@ -44,11 +45,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 imageHeight: 100,
                 imageAlt: "Éxito",
                 confirmButtonText: "ver graficas"
-              }).then((result) => {
+            }).then((result) => {
                 if (result.isConfirmed) {
                     // Oculta el formulario
                     document.getElementById("formulario").classList.add("d-none");
-            
+
                     // Muestra la sección de gráficas
                     document.getElementById("graficas").classList.remove("d-none");
                     document.getElementById("graficas").classList.add("d-block");
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         // Mostrar el conteo de respuestas en la consola
         console.log(respuestas);
-        
+
         // Mostrar resultados ordenados por columna
         respuestas.forEach((conteo, index) => {
             console.log(`\nPregunta ${index + 1}:`);
@@ -109,7 +110,9 @@ document.addEventListener("DOMContentLoaded", function () {
             //total
             console.log(`\nTotal: ${filaFin - filaInicio + 1}\n`);
         });
-        
+
+        // graficas
+
     }
 });
 
