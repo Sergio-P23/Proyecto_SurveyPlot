@@ -44,7 +44,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 imageHeight: 100,
                 imageAlt: "Éxito",
                 confirmButtonText: "ver graficas"
-              });
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    // Oculta el formulario
+                    document.getElementById("formulario").classList.add("d-none");
+            
+                    // Muestra la sección de gráficas
+                    document.getElementById("graficas").classList.remove("d-none");
+                    document.getElementById("graficas").classList.add("d-block");
+                }
+            });
         };
         //lee el archivo seleccionado como un bloque binario 
         reader.readAsArrayBuffer(file);
@@ -103,3 +112,5 @@ document.addEventListener("DOMContentLoaded", function () {
         
     }
 });
+
+
