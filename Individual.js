@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         //El evento onload se activa cuando el archivo se ha leído correctamente
         reader.onload = function (e) {
-            console.log("Archivo leído correctamente"); 
+            console.log("Archivo leído correctamente");
             //Convierte el archivo Excel a una estructura binaria que pueda ser procesada por XLSX(e.target.result contiene los datos leídos) 
             const datos = new Uint8Array(e.target.result);
             //almacenamos el libro para trabajar con la funcion XLSX.read
@@ -112,6 +112,61 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         // graficas
+        const container = document.getElementById("graficas");
+        container.innerHTML = ""; // Limpia gráficas anteriores si existen
+
+        respuestas.forEach((conteo, index) => {
+            // Crear un div contenedor para cada gráfico
+            const chartContainer = document.createElement("div");
+            chartContainer.style.width = "400px";
+            chartContainer.style.height = "400px";
+            chartContainer.style.margin = "20px auto";
+
+            // Crear canvas
+            const canvas = document.createElement("canvas");
+            canvas.id = `grafica-${index}`;
+            chartContainer.appendChild(canvas);
+            container.appendChild(chartContainer);
+
+            // Extraer valores y etiquetas del conteo
+            const labels = Object.keys(conteo);
+            const data = labels.map(label => conteo[label]);
+
+            // Crear gráfico de torta
+            new Chart(canvas, {
+                type: "pie",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `Pregunta ${index + 1}`,
+                        data: data,
+                        backgroundColor: [
+                            "#FF6384", // rojo
+                            "#FFCE56", // amarillo
+                            "#36A2EB", // azul
+                            "#4BC0C0", // verde azulado
+                            "#9966FF"  // púrpura
+                        ],
+                        borderColor: "#ffffff",
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `respuestas - Pregunta ${index + 1}`
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        });
+
+
 
     }
 });
