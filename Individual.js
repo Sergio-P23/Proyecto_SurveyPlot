@@ -116,19 +116,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const container = document.getElementById("graficas");
         container.innerHTML = ""; // Limpiar gráficas anteriores
 
-        // Agregar botón de descarga
-        const downloadBtn = document.createElement("button");
-        downloadBtn.className = "download-button position-absolute top-0 start-50 translate-middle-x mt-2 mb-5";
-        downloadBtn.innerText = "Descargar";
-        downloadBtn.onclick = () => {
-            document.getElementById("container-g").style.display = "none";
-        };
-        container.appendChild(downloadBtn);
-
         // Recorrer respuestas y crear una gráfica por cada pregunta
         respuestas.forEach((conteo, index) => {
             const col = document.createElement("div");
-            col.className = "col-md-6 mb-4 mt-5";
+            col.className = "col-md-6 mb-4";
 
             const chartContainer = document.createElement("div");
             chartContainer.className = "p-3 shadow rounded bg-white";
