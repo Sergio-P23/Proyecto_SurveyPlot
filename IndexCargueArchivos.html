@@ -26,7 +26,7 @@
 
         /*diseño div bienvenida*/
         .welcome-screen {
-            position: absolute;
+            position: fixed;
             top: 0;
             bottom: 0;
             left: 0;
@@ -57,6 +57,7 @@
             /* Sombra div: movimiento en x, y, nitides de sombre, color*/
         }
 
+        /*diseño letra bienvenida*/
         .welcome-text {
             /*tamaño, tipo, color, sombra*/
             font-size: 60px;
@@ -81,6 +82,7 @@
             /*cambia el cursor al pasar por encima*/
             margin-top: 0px;
             /*para separar el boton del texto: 0 porque el paddin .welcome-text lo hace*/
+            max-width: 100%;
         }
 
         /*diseño capa de fondo*/
@@ -98,7 +100,7 @@
             /*su prioridad es irrelevante por eso 1*/
         }
 
-        /* Caja principal donde se encuentran los inputs y el botón */
+        /*div individual*/
         .content-container {
             position: relative;
             z-index: 9;
@@ -113,6 +115,7 @@
             /* Sombra para resaltar la caja */
         }
 
+        /*div grraficas*/
         .container-graficas {
             position: fixed;
             /* Cambiado de absolute a fixed para mejor centrado */
@@ -131,22 +134,16 @@
             display: flex;
             /* Mejor usar esto en lugar de d-none de Bootstrap para consistencia */
         }
-        .download-button {
-            font-weight: bold;
-            background-color: green;
-            color: white;
-            padding: 15px 30px;
-            /*espcio interno sup e inf, espacio interno left y right*/
-            border: 2px solid rgb(12, 70, 14);
-            border-radius: 20px;
-            font-size: 20px;
-            cursor: pointer;
-            /*cambia el cursor al pasar por encima*/
-            margin-top: 0px;
-            /*para separar el boton del texto: 0 porque el paddin .welcome-text lo hace*/
-            width: 50%;
+
+        /*clases de display*/
+        .ver {
+            display: block;
+            display: flex;
         }
 
+        .ocultar {
+            display: none;
+        }
     </style>
 </head>
 
@@ -155,14 +152,28 @@
     <div class="overlay"></div>
 
     <!-- Pantalla de bienvenida -->
-    <div class="welcome-screen" id="bienvenida">
+    <div class="ver welcome-screen" id="bienvenida">
         <div class="welcome-text">!Hola, Bienvenido¡</div>
-        <button class="welcome-button"
-            onclick="document.getElementById('bienvenida').style.display='none';">Empezar</button>
+        <button class="welcome-button" onclick="document.getElementById('bienvenida').classList.remove('ver');
+                    document.getElementById('bienvenida').classList.add('ocultar'); 
+                    document.getElementById('formulario-individual').classList.remove('ocultar'); 
+                    document.getElementById('formulario-individual').classList.add('ver')">Individual</button>
+        <br>
+        <button class="welcome-button" onclick="document.getElementById('bienvenida').classList.remove('ver');
+                    document.getElementById('bienvenida').classList.add('ocultar'); 
+                    document.getElementById('formulario-consolidado').classList.remove('d-none'); 
+                    document.getElementById('formulario-consolidado').classList.add('d-block')">consolidado</button>
+        <br>
+        <button class="welcome-button" 
+        onclick="document.getElementById('bienvenida').classList.remove('ver');
+            document.getElementById('bienvenida').classList.add('ocultar');
+            document.getElementById('formulario-analisis').classList.remove('d-none');
+            document.getElementById('formulario-analisis').classList.add('d-block')">Analisis</button>
     </div>
 
     <!-- Contenedor individual -->
-    <div class="container d-flex justify-content-center align-items-center ver" style="height: 100vh;" id="formulario-individual">
+    <div class="ocultar container justify-content-center align-items-center" style="height: 100vh;"
+        id="formulario-individual">
         <div class="content-container">
             <!--mb=margin bottom -->
             <h2 class="mb-4 text-center">Cargar Archivo Excel</h2>
@@ -211,12 +222,24 @@
     </div>
 
     <!--contenedor de las graficas-->
-    <div class="d-none container mt-4 d-grid gap-3" id="container-g">
-        <div id="graficas" class="row container-graficas ">
-          <div class="mt-5 col-md-6" id="columna-izquierda"></div>
-          <div class="mt-5 col-md-6" id="columna-derecha"></div>
+    <div class="container mt-4 d-grid gap-3 " id="container-g">
+        <div id="graficas" class="ocultar row container-graficas ">
+            <div class="mt-5 col-md-6" id="columna-izquierda"></div>
+            <div class="mt-5 col-md-6" id="columna-derecha"></div>
         </div>
-      </div>
+    </div>
+
+    <!-- Contenedor consolidado -->
+    <div class="ocultar container justify-content-center align-items-center" style="height: 100vh;"
+        id="formulario-consolidado">
+        <h1 style="background-color: aliceblue;">cosolidado</h1>
+    </div>
+
+    <!-- Contenedor analisis -->
+    <div class="ocultar container justify-content-center align-items-center" style="height: 100vh;"
+        id="formulario-analisis">
+        <h1 style="background-color: aliceblue;">analisis</h1>
+    </div>
 
 
     <script src="Individual.js"></script>

@@ -1,5 +1,6 @@
 //Cargar el DOM antes de ejecutar el script
 document.addEventListener("DOMContentLoaded", function () {
+
     //Buscael el docymento HTML referencias a elementos del formulario
     const formulario = document.getElementById("inputsFormulario");
     const fileInput = document.getElementById("fileInput");
@@ -48,11 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Oculta el formulario
-                    document.getElementById("formulario-individual").classList.add("d-none");
+                    document.getElementById("formulario-individual").classList.remove("ver");
+                    document.getElementById("formulario-individual").classList.add("ocultar");
 
                     // Muestra la sección de gráficas
-                    document.getElementById("container-g").classList.remove("d-none");
-                    document.getElementById("container-g").classList.add("d-block");
+                    document.getElementById("graficas").classList.remove("ocultar");
+                    document.getElementById("gradicas").classList.add("ver");
+                    
                     
                 }
             });
