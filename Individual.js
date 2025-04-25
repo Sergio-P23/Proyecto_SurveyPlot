@@ -48,11 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Oculta el formulario
-                    document.getElementById("formulario").classList.add("d-none");
+                    document.getElementById("formulario-individual").classList.add("d-none");
 
                     // Muestra la sección de gráficas
-                    document.getElementById("graficas").classList.remove("d-none");
-                    document.getElementById("graficas").classList.add("d-block");
+                    document.getElementById("container-g").classList.remove("d-none");
+                    document.getElementById("container-g").classList.add("d-block");
                     
                 }
             });

@@ -41,7 +41,7 @@
             width: 94vw;
             /*ocupa ese porcentaje de ancho en la pantalla*/
             max-width: 900px;
-            height: 96vh;
+            height: 91vh;
             /*ocupa ese porcentaje de alto en la pantalla*/
             background: rgb(255, 255, 255);
             /*color fondo div*/
@@ -128,7 +128,7 @@
             padding: 35px;
             border-radius: 10px;
             box-shadow: 0px 0px 100px rgb(0, 0, 0);
-            display: none;
+            display: flex;
             /* Mejor usar esto en lugar de d-none de Bootstrap para consistencia */
         }
         .download-button {
@@ -161,8 +161,8 @@
             onclick="document.getElementById('bienvenida').style.display='none';">Empezar</button>
     </div>
 
-    <!-- Contenedor principal centrado en la pantalla -->
-    <div class="container d-flex justify-content-center align-items-center ver" style="height: 100vh;" id="formulario">
+    <!-- Contenedor individual -->
+    <div class="container d-flex justify-content-center align-items-center ver" style="height: 100vh;" id="formulario-individual">
         <div class="content-container">
             <!--mb=margin bottom -->
             <h2 class="mb-4 text-center">Cargar Archivo Excel</h2>
@@ -211,7 +211,7 @@
     </div>
 
     <!--contenedor de las graficas-->
-    <div class="container mt-4 d-grid gap-3" id="container-g">
+    <div class="d-none container mt-4 d-grid gap-3" id="container-g">
         <div id="graficas" class="row container-graficas ">
           <div class="mt-5 col-md-6" id="columna-izquierda"></div>
           <div class="mt-5 col-md-6" id="columna-derecha"></div>
