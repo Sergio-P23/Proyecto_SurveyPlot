@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Muestra la sección de gráficas
                     document.getElementById("graficas").classList.remove("ocultar");
-                    document.getElementById("gradicas").classList.add("ver");
+                    document.getElementById("graficas").classList.add("ver");
                     
                     
                 }
