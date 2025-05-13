@@ -19,7 +19,7 @@ function inicializarFormulario() {
 
 // extraccion de parametros
 function procesarFormulario(fileInput) {
-    const nameEncuesta = document.getElementById("nombreEncuesta").value;
+    
     const colInicio = document.getElementById("columnaInicio").value.toUpperCase();
     const colFin = document.getElementById("columnaFin").value.toUpperCase();
     const filInicio = parseInt(document.getElementById("filaInicio").value);
@@ -258,51 +258,44 @@ function esperarRenderizadoDeGraficas() {
 
 // Función para generar el PDF
 function generarPDF() {
-    const container = document.getElementById("graficas");
-    const downloadButton = document.querySelector("#graficas button");
+     const canvases = document.querySelectorAll("canvas[id^='grafica-']");
+    const pdf = new window.jspdf.jsPDF("p", "mm", "a4");
 
-    // Guardar estilos originales
-    const originalStyle = container.getAttribute("style") || "";
-    const originalClass = container.className;
+    const graficasPorPagina = 6;
+    const imgWidth = 90; // ancho en mm
+    const imgHeight = 70; // alto en mm
+    const marginX = 10;
+    const marginY = 10;
+    const espacioVertical = 85;   // 70mm alto + 15mm espacio
+    const espacioHorizontal = 100; // 90mm ancho + 10mm espacio
 
-    // Aplicar estilos temporales seguros para captura
-    container.style.position = "static";
-    container.style.overflow = "visible";
-    container.style.maxHeight = "none";
-    container.style.width = "100%";
-    container.classList.remove("ocultar");
-    container.classList.add("ver");
-    downloadButton.style.display = "none";
+    let x = marginX;
+    let y = marginY;
+    let count = 0;
 
-    esperarRenderizadoDeGraficas().then(() => {
-        html2canvas(container, { scale: 2, useCORS: true }).then((canvas) => {
-            const imgData = canvas.toDataURL("image/png");
-            const pdf = new window.jspdf.jsPDF("p", "mm", "a4");
+    canvases.forEach((canvas, index) => {
+        const imgData = canvas.toDataURL("image/png");
 
-            const imgWidth = 190;
-            const pageHeight = 297;
-            const imgHeight = (canvas.height * imgWidth) / canvas.width;
-            let heightLeft = imgHeight;
-            let position = 10;
+        pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
 
-            pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
+        count++;
 
-            while (heightLeft > 0) {
-                position = heightLeft - imgHeight;
-                pdf.addPage();
-                pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-            }
+        // Alternar entre columnas
+        if (count % 2 === 0) {
+            x = marginX;         // reiniciar columna izquierda
+            y += espacioVertical; // mover a la siguiente fila
+        } else {
+            x += espacioHorizontal; // mover a la derecha
+        }
 
-            pdf.save("graficas.pdf");
-
-            // Restaurar estado original
-            container.setAttribute("style", originalStyle);
-            container.className = originalClass;
-            downloadButton.style.display = "block";
-        }).catch((error) => {
-            console.error("Error al generar el PDF:", error);
-        });
+        // Saltar de página cada 6 gráficas
+        if (count % graficasPorPagina === 0 && index !== canvases.length - 1) {
+            pdf.addPage();
+            x = marginX;
+            y = marginY;
+        }
     });
+    const nameEncuesta = document.getElementById("nombreEncuesta").value;
+
+    pdf.save("graficas - " + nameEncuesta + ".pdf");
 }
