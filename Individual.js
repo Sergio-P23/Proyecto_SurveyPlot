@@ -19,19 +19,25 @@ function inicializarFormulario() {
 
 // extraccion de parametros
 function procesarFormulario(fileInput) {
-    
+
     const colInicio = document.getElementById("columnaInicio").value.toUpperCase();
     const colFin = document.getElementById("columnaFin").value.toUpperCase();
     const filInicio = parseInt(document.getElementById("filaInicio").value);
     const filFin = parseInt(document.getElementById("filaFin").value);
- 
+
     //obtiene el primer archivo subido
     const file = fileInput.files[0];
     if (file) {
         leerArchivo(file, colInicio, colFin, filInicio, filFin);
         //mejorar alerta
     } else {
-        alert("Por favor, selecciona un archivo.");
+        Swal.fire({
+            icon: 'warning',
+            title: 'Archivo no seleccionado',
+            text: 'Por favor, selecciona un archivo Excel antes de continuar.',
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: '#3085d6'
+        });
     }
 }
 
@@ -46,8 +52,8 @@ function leerArchivo(file, colInicio, colFin, filInicio, filFin) {
         const hojarespuestas = libroTrabajo.SheetNames[0];
         const sheet = libroTrabajo.Sheets[hojarespuestas];
         const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
- 
-        
+
+
         procesarRespuestas(jsonData, colInicio, colFin, filInicio, filFin);
         AlertaProcesado();
     };
@@ -60,7 +66,7 @@ function AlertaError() {
     Swal.fire({
         title: "problema",
         text: "El archivo no se procesó correctamente.",
-        
+
         text: "El archivo se procesó con éxito.",
         imageUrl: "https://cdn-icons-png.flaticon.com/512/845/845646.png",
         imageWidth: 100,
@@ -158,7 +164,7 @@ function mostrarResultadosConsola(respuestas, respuestasPosibles, filaInicio, fi
 
 // Genera las gráficas de las respuestas
 function generarGraficas(respuestas) {
-   const container = document.getElementById("graficas");
+    const container = document.getElementById("graficas");
     container.innerHTML = "";
 
     respuestas.forEach((conteo, index) => {
@@ -258,7 +264,7 @@ function esperarRenderizadoDeGraficas() {
 
 // Función para generar el PDF
 function generarPDF() {
-     const canvases = document.querySelectorAll("canvas[id^='grafica-']");
+    const canvases = document.querySelectorAll("canvas[id^='grafica-']");
     const pdf = new window.jspdf.jsPDF("p", "mm", "a4");
 
     const graficasPorPagina = 6;
