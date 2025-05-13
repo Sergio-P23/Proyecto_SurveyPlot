@@ -158,7 +158,7 @@ function mostrarResultadosConsola(respuestas, respuestasPosibles, filaInicio, fi
 
 // Genera las gráficas de las respuestas
 function generarGraficas(respuestas) {
-    const container = document.getElementById("graficas");
+   const container = document.getElementById("graficas");
     container.innerHTML = "";
 
     respuestas.forEach((conteo, index) => {
@@ -224,6 +224,85 @@ function generarGraficas(respuestas) {
                     }
                 }
             }
+        });
+    });
+
+    // Agregar botón "Descargar PDF"
+    const downloadButton = document.createElement("button");
+    downloadButton.textContent = "Descargar PDF";
+    downloadButton.className = "btn btn-primary mt-4";
+    downloadButton.onclick = generarPDF; // Asocia la función para generar el PDF
+    container.appendChild(downloadButton);
+}
+
+//promesa
+function esperarRenderizadoDeGraficas() {
+    return new Promise((resolve) => {
+        const total = document.querySelectorAll("canvas[id^='grafica-']").length;
+        let listos = 0;
+        const checkListos = setInterval(() => {
+            listos = 0;
+            document.querySelectorAll("canvas[id^='grafica-']").forEach(canvas => {
+                if (canvas.offsetHeight > 0 && canvas.offsetWidth > 0) {
+                    listos++;
+                }
+            });
+            if (listos === total) {
+                clearInterval(checkListos);
+                resolve();
+            }
+        }, 200); // revisa cada 200ms
+    });
+}
+
+
+// Función para generar el PDF
+function generarPDF() {
+    const container = document.getElementById("graficas");
+    const downloadButton = document.querySelector("#graficas button");
+
+    // Guardar estilos originales
+    const originalStyle = container.getAttribute("style") || "";
+    const originalClass = container.className;
+
+    // Aplicar estilos temporales seguros para captura
+    container.style.position = "static";
+    container.style.overflow = "visible";
+    container.style.maxHeight = "none";
+    container.style.width = "100%";
+    container.classList.remove("ocultar");
+    container.classList.add("ver");
+    downloadButton.style.display = "none";
+
+    esperarRenderizadoDeGraficas().then(() => {
+        html2canvas(container, { scale: 2, useCORS: true }).then((canvas) => {
+            const imgData = canvas.toDataURL("image/png");
+            const pdf = new window.jspdf.jsPDF("p", "mm", "a4");
+
+            const imgWidth = 190;
+            const pageHeight = 297;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            let heightLeft = imgHeight;
+            let position = 10;
+
+            pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            while (heightLeft > 0) {
+                position = heightLeft - imgHeight;
+                pdf.addPage();
+                pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
+            pdf.save("graficas.pdf");
+
+            // Restaurar estado original
+            container.setAttribute("style", originalStyle);
+            container.className = originalClass;
+            downloadButton.style.display = "block";
+        }).catch((error) => {
+            console.error("Error al generar el PDF:", error);
         });
     });
 }
