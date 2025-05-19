@@ -144,8 +144,6 @@
         .ocultar {
             display: none;
         }
-
-        
     </style>
 </head>
 
@@ -161,18 +159,20 @@
                     document.getElementById('formulario-individual').classList.remove('ocultar'); 
                     document.getElementById('formulario-individual').classList.add('ver')">Individual</button>
         <br>
-        <button class="welcome-button" onclick="document.getElementById('bienvenida').classList.remove('ver');
+        <a href="consolidar.html">
+            <button class="welcome-button" onclick="document.getElementById('bienvenida').classList.remove('ver');
                     document.getElementById('bienvenida').classList.add('ocultar'); 
                     document.getElementById('formulario-consolidado').classList.remove('d-none'); 
                     document.getElementById('formulario-consolidado').classList.add('d-block')">consolidado</button>
+
+        </a>
+
         <br>
-        <button class="welcome-button" 
-        onclick="document.getElementById('bienvenida').classList.remove('ver');
+        <button class="welcome-button" onclick="document.getElementById('bienvenida').classList.remove('ver');
             document.getElementById('bienvenida').classList.add('ocultar');
             document.getElementById('formulario-analisis').classList.remove('d-none');
             document.getElementById('formulario-analisis').classList.add('d-block')">Analisis</button>
 
-            <iframe src="https://www.google.com.co/" width="100%" height="500"></iframe>
     </div>
 
     <!-- Contenedor individual -->
@@ -193,7 +193,7 @@
                 <!-- Campo de entrada para subir el archivo Excel -->
                 <div class="mb-3">
                     <label for="fileInput" class="form-label">Selecciona un archivo Excel</label>
-                    <input class="form-control" type="file" id="fileInput" accept=".xls,.xlsx" >
+                    <input class="form-control" type="file" id="fileInput" accept=".xls,.xlsx">
                 </div>
 
                 <!-- Inputs para definir el rango de iteración -->
@@ -233,11 +233,7 @@
         </div>
     </div>
 
-    <!-- Contenedor consolidado -->
-    <div class="ocultar container justify-content-center align-items-center" style="height: 100vh;"
-        id="formulario-consolidado">
-        <h1 style="background-color: aliceblue;">cosolidado</h1>
-    </div>
+
 
     <!-- Contenedor analisis -->
     <div class="ocultar container justify-content-center align-items-center" style="height: 100vh;"
@@ -246,7 +242,7 @@
     </div>
 
 
-    
+
 
     <script src="Individual.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
