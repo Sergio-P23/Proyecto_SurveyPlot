@@ -12,6 +12,7 @@ function inicializarFormulario() {
 
     // captura el evento submit del formulario
     formulario.addEventListener("submit", function (event) {
+
         event.preventDefault();
         procesarFormulario(fileInput);
     });
@@ -25,20 +26,40 @@ function procesarFormulario(fileInput) {
     const filInicio = parseInt(document.getElementById("filaInicio").value);
     const filFin = parseInt(document.getElementById("filaFin").value);
 
-    //obtiene el primer archivo subido
-    const file = fileInput.files[0];
-    if (file) {
-        leerArchivo(file, colInicio, colFin, filInicio, filFin);
-        //mejorar alerta
-    } else {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Archivo no seleccionado',
-            text: 'Por favor, selecciona un archivo Excel antes de continuar.',
-            confirmButtonText: 'Entendido',
-            confirmButtonColor: '#3085d6'
-        });
+    let val = validaciones(colInicio, colFin);
+    if (val === true) {
+        if (filInicio > filFin) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'La fila de inicio no puede ser mayor que la fila de fin.',
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#3085d6'
+            });
+            return;
+        }
+        else {
+            //obtiene el primer archivo subido
+            const file = fileInput.files[0];
+            if (file) {
+                leerArchivo(file, colInicio, colFin, filInicio, filFin);
+                //mejorar alerta
+            } else {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Archivo no seleccionado',
+                    text: 'Por favor, selecciona un archivo Excel antes de continuar.',
+                    confirmButtonText: 'Entendido',
+                    confirmButtonColor: '#3085d6'
+                });
+            }
+        }
+
+
     }
+
+
+
 }
 
 // Lee el archivo seleccionado
@@ -304,4 +325,38 @@ function generarPDF() {
     const nameEncuesta = document.getElementById("nombreEncuesta").value;
 
     pdf.save("graficas - " + nameEncuesta + ".pdf");
+}
+
+function validaciones(columnaInicio, columnaFin) {
+    // Arreglo de todas las letras del abecedario en strings
+    const abecedario = [
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+        "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+    ];
+
+    let colInicio = 0, colFin = 0;
+
+    for (let i = 0; i < abecedario.length; i++) {
+        if (columnaInicio === abecedario[i]) {
+            colInicio = i;
+        }
+        if (columnaFin === abecedario[i]) {
+            colFin = i;
+        }
+    }
+
+    if (colInicio > colFin) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'La columna de inicio no puede ser mayor que la columna de fin.',
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: '#3085d6'
+        });
+        return false;
+    }
+    else {
+        return true;
+    }
+
 }

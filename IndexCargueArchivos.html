@@ -171,6 +171,8 @@
             document.getElementById('bienvenida').classList.add('ocultar');
             document.getElementById('formulario-analisis').classList.remove('d-none');
             document.getElementById('formulario-analisis').classList.add('d-block')">Analisis</button>
+
+            <iframe src="https://www.google.com.co/" width="100%" height="500"></iframe>
     </div>
 
     <!-- Contenedor individual -->
@@ -196,24 +198,24 @@
 
                 <!-- Inputs para definir el rango de iteración -->
                 <div class="mb-3">
-                    <label for="columnaInicio" class="form-label">Columna de inicio (Ej: A, B, C...)</label>
+                    <label for="columnaInicio" class="form-label">Columna primera pregunta (Ej: A, B, C...)</label>
                     <input type="text" class="form-control text-uppercase" id="columnaInicio" maxlength="1"
                         placeholder="Ej: E" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="columnaFin" class="form-label">Columna de fin (Ej: D, E, F...)</label>
+                    <label for="columnaFin" class="form-label">Columna ultima pregunta (Ej: D, E, F...)</label>
                     <input type="text" class="form-control text-uppercase" id="columnaFin" maxlength="1"
                         placeholder="Ej: M" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="filaInicio" class="form-label">Fila donde inician las preguntas</label>
+                    <label for="filaInicio" class="form-label">Fila donde inician las respuestas</label>
                     <input type="number" class="form-control" id="filaInicio" min="1" placeholder="Ej: 2" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="filaFin" class="form-label">Fila donde terminan las preguntas</label>
+                    <label for="filaFin" class="form-label">Fila donde terminan las respuestas</label>
                     <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 42" required>
                 </div>
 
@@ -243,6 +245,8 @@
         <h1 style="background-color: aliceblue;">analisis</h1>
     </div>
 
+
+    
 
     <script src="Individual.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
