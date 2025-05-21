@@ -21,51 +21,119 @@
     <div class="ver container justify-content-center align-items-center" style="height: 100vh;"
         id="formulario-consolidado">
         <div class="content-container">
-            <!--mb=margin bottom -->
-            <h2 class="mb-4 text-center">Cargar Archivo Excel :3</h2>
-            <form id="inputsFormulario">
-                <!-- Campo de entrada para el nombre de la encuesta -->
-                <div class="mb-3">
-                    <label for="nombreEncuesta" class="form-label">Nombre de la Encuesta</label>
-                    <input type="text" class="form-control" id="nombreEncuesta" placeholder="carac31-ing Industrial"
-                        required>
-                    <div class="form-text">El archivo con las gráficas se descargará con el nombre ingresado.</div>
+            <div class="row">
+                <h2 class="mb-3 text-center">Cargar Archivos Excel</h2>
+                <div class="col-md-6 p-5 pt-1 border-end">
+                    <!--mb=margin bottom -->
+                    <form id="inputsFormulario">
+                        <!-- Campo de entrada para el nombre de la encuesta -->
+                        <div class="mb-3">
+                            <label for="nombreEncuesta" class="form-label">Nombre de la Encuesta</label>
+                            <input type="text" class="form-control" id="nombreEncuesta"
+                                placeholder="carac31-ing Industrial" required>
+                            <div class="form-text">El archivo con las gráficas se descargará con el nombre ingresado.
+                            </div>
+                        </div>
+
+                        <!-- Campo de entrada para subir el archivo Excel -->
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label">Selecciona un archivo Excel</label>
+                            <input class="form-control" type="file" id="fileInput" accept=".xls,.xlsx">
+                        </div>
+
+                        <!-- Inputs para definir el rango de iteración -->
+                        <div class="mb-3">
+                            <label for="columnaInicio" class="form-label">Columna primera pregunta (Ej: A, B,
+                                C...)</label>
+                            <input type="text" class="form-control text-uppercase" id="columnaInicio" maxlength="1"
+                                placeholder="Ej: E" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="columnaFin" class="form-label">Columna ultima pregunta (Ej: D, E, F...)</label>
+                            <input type="text" class="form-control text-uppercase" id="columnaFin" maxlength="1"
+                                placeholder="Ej: M" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="filaInicio" class="form-label">Fila donde inician las respuestas</label>
+                            <input type="number" class="form-control" id="filaInicio" min="1" placeholder="Ej: 2"
+                                required>
+                        </div>
+
+                        <div class="">
+                            <label for="filaFin" class="form-label">Fila donde terminan las respuestas</label>
+                            <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 42"
+                                required>
+                        </div>
+                    </form>
                 </div>
 
-                <!-- Campo de entrada para subir el archivo Excel -->
-                <div class="mb-3">
-                    <label for="fileInput" class="form-label">Selecciona un archivo Excel</label>
-                    <input class="form-control" type="file" id="fileInput" accept=".xls,.xlsx">
+
+                <div class="col-md-6 p-5 pt-1 border-start">
+                    <!--mb=margin bottom -->
+                    <form id="inputsFormulario">
+                        <!-- Campo de entrada para el nombre de la encuesta -->
+                        <div class="mb-3">
+                            <label for="nombreEncuesta" class="form-label">Nombre de la Encuesta</label>
+                            <input type="text" class="form-control" id="nombreEncuesta"
+                                placeholder="carac31-ing Industrial" required>
+                            <div class="form-text">El archivo con las gráficas se descargará con el nombre ingresado.
+                            </div>
+                        </div>
+
+                        <!-- Campo de entrada para subir el archivo Excel -->
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label">Selecciona un archivo Excel</label>
+                            <input class="form-control" type="file" id="fileInput" accept=".xls,.xlsx">
+                        </div>
+
+                        <!-- Inputs para definir el rango de iteración -->
+                        <div class="mb-3">
+                            <label for="columnaInicio" class="form-label">Columna primera pregunta (Ej: A, B,
+                                C...)</label>
+                            <input type="text" class="form-control text-uppercase" id="columnaInicio" maxlength="1"
+                                placeholder="Ej: E" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="columnaFin" class="form-label">Columna ultima pregunta (Ej: D, E, F...)</label>
+                            <input type="text" class="form-control text-uppercase" id="columnaFin" maxlength="1"
+                                placeholder="Ej: M" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="filaInicio" class="form-label">Fila donde inician las respuestas</label>
+                            <input type="number" class="form-control" id="filaInicio" min="1" placeholder="Ej: 2"
+                                required>
+                        </div>
+
+                        <div class="">
+                            <label for="filaFin" class="form-label">Fila donde terminan las respuestas</label>
+                            <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 42"
+                                required>
+                        </div>
+
+
+                    </form>
                 </div>
 
-                <!-- Inputs para definir el rango de iteración -->
-                <div class="mb-3">
-                    <label for="columnaInicio" class="form-label">Columna primera pregunta (Ej: A, B, C...)</label>
-                    <input type="text" class="form-control text-uppercase" id="columnaInicio" maxlength="1"
-                        placeholder="Ej: E" required>
-                </div>
 
-                <div class="mb-3">
-                    <label for="columnaFin" class="form-label">Columna ultima pregunta (Ej: D, E, F...)</label>
-                    <input type="text" class="form-control text-uppercase" id="columnaFin" maxlength="1"
-                        placeholder="Ej: M" required>
-                </div>
+            </div>
 
-                <div class="mb-3">
-                    <label for="filaInicio" class="form-label">Fila donde inician las respuestas</label>
-                    <input type="number" class="form-control" id="filaInicio" min="1" placeholder="Ej: 2" required>
+            <div class="row">
+                <div class="col-12 p-3">
+                    <button type="submit" class="btn btn-primary w-100" style="font-weight: bold;">Generar
+                        graficas</button>
                 </div>
-
-                <div class="mb-3">
-                    <label for="filaFin" class="form-label">Fila donde terminan las respuestas</label>
-                    <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 42" required>
+                <div class="col-12">
+                    <button class="btn btn-success w-100" onclick="regresarMenu()"
+                        style="font-weight: bold;">Menu</button>
                 </div>
+            </div>
 
-                <!-- Botón para enviar el formulario -->
-                <button type="submit" class="btn btn-primary w-100" style="font-weight: bold;">Generar graficas</button>
-                <br><br>
-            </form>
-            <button class="btn btn-success w-100" onclick="regresarMenu()" style="font-weight: bold;">Menu</button>
+
+
 
         </div>
     </div>

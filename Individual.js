@@ -362,8 +362,9 @@ function validaciones(columnaInicio, columnaFin) {
 }
 
 function regresarMenu(){
+    window.history.back();
 
-    //location.reload();
-    window.location.href = "indexBienvenida.html";
+    // window.location.href = window.location.href; // recarga la misma página
+
     
 }
