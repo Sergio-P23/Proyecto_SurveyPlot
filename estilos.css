@@ -1,0 +1,143 @@
+                        /*fondo*/
+                        .body-bg {
+                            background-image: url('https://th.bing.com/th/id/R.5595525f6357b3971de0a433eb22ce5d?rik=%2blaGzea3SVtsQg&pid=ImgRaw&r=0');
+                            /*establece imagen de fondo*/
+                            background-size: cover;
+                            /*ajusta la imagen que cubra todo el contenedor sin distorsionarse*/
+                            background-position: center;
+                            /*centra la imagen de fondo*/
+                            background-attachment: fixed;
+                            /*fija la imagen de fondo para que no se desplace al hacer scroll*/
+                            position: relative;
+                            /*posiciona el elemento relativo a su posición norma sin sacarlo de flujo*/
+                        }
+
+                        /*diseño div bienvenida*/
+                        .welcome-screen {
+                            position: fixed;
+                            top: 0;
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            margin: auto;
+                            display: flex;
+                            /*Activa Flexbox para organizar el contenido*/
+                            justify-content: center;
+                            /*Centra los elementos en el eje horizontal*/
+                            align-items: center;
+                            /*Centra los elementos en el eje vertical*/
+                            width: 94vw;
+                            /*ocupa ese porcentaje de ancho en la pantalla*/
+                            max-width: 900px;
+                            height: 91vh;
+                            /*ocupa ese porcentaje de alto en la pantalla*/
+                            background: rgb(255, 255, 255);
+                            /*color fondo div*/
+                            flex-direction: column;
+                            /*Apila los elementos en columna*/
+                            text-align: center;
+                            /*Alinea el texto al centro*/
+                            z-index: 100000;
+                            /*Da prioridad sobre otros elementos con menor z-index*/
+                            border-radius: 20px;
+                            /* Bordes redondeados */
+                            box-shadow: 0px 0px 30px rgba(6, 153, 18, 0.738);
+                            /* Sombra div: movimiento en x, y, nitides de sombre, color*/
+                        }
+
+                        /*diseño letra bienvenida*/
+                        .welcome-text {
+                            /*tamaño, tipo, color, sombra*/
+                            font-size: 60px;
+                            font-weight: bold;
+                            color: green;
+                            padding: 0px 0px 100px 0px;
+                            /*boton separado de text*/
+                            text-shadow: 10px 20px 50px rgb(13, 86, 21);
+                            /* Sombra texto: movimiento en x, y, nitides de sombre, color*/
+                        }
+
+                        .welcome-button {
+                            font-weight: bold;
+                            background-color: green;
+                            color: white;
+                            padding: 15px 30px;
+                            /*espcio interno sup e inf, espacio interno left y right*/
+                            border: 2px solid rgb(12, 70, 14);
+                            border-radius: 20px;
+                            font-size: 20px;
+                            cursor: pointer;
+                            /*cambia el cursor al pasar por encima*/
+                            margin-top: 0px;
+                            /*para separar el boton del texto: 0 porque el paddin .welcome-text lo hace*/
+                            max-width: 100%;
+                        }
+
+                        /*diseño capa de fondo*/
+                        .overlay {
+                            position: fixed;
+                            /*que se ubique desde el top y left*/
+                            top: 0;
+                            left: 0;
+                            /*ocupe el 100% de alto y ancho*/
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.588);
+                            /*Opacidad ajustable*/
+                            z-index: 1;
+                            /*su prioridad es irrelevante por eso 1*/
+                        }
+
+                        .container-iframe {
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100vw;
+                            height: 100vh;
+                            z-index: 9;
+                        }
+
+                        /*div individual*/
+                        .content-container {
+                            position: relative;
+                            z-index: 9;
+                            /*segundo div mas relevante*/
+                            max-width: 500px;
+                            /* Ancho máximo de la caja */
+                            background-color: white;
+                            padding: 35px;
+                            border-radius: 10px;
+                            /* Bordes redondeados */
+                            box-shadow: 0px 0px 100px rgb(0, 0, 0);
+                            /* Sombra para resaltar la caja */
+                        }
+
+                        /*div grraficas*/
+                        .container-graficas {
+                            position: fixed;
+                            /* Cambiado de absolute a fixed para mejor centrado */
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            /* Esto centra exactamente el elemento */
+                            z-index: 9;
+                            overflow-y: auto;
+                            width: 79%;
+                            max-height: 800px;
+                            background-color: rgb(255, 255, 255);
+                            padding: 35px;
+                            border-radius: 10px;
+                            box-shadow: 0px 0px 100px rgb(0, 0, 0);
+                            display: flex;
+                            /* Mejor usar esto en lugar de d-none de Bootstrap para consistencia */
+                        }
+
+                        /*clases de display*/
+                        .ver {
+                            display: block;
+                            display: flex;
+                        }
+
+                        .ocultar {
+                            display: none;
+                        }

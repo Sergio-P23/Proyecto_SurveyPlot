@@ -12,8 +12,8 @@ function inicializarFormulario() {
 
     // captura el evento submit del formulario
     formulario.addEventListener("submit", function (event) {
-
-        event.preventDefault();
+        //RECARGAR LA PAGINA
+        //event.preventDefault();
         procesarFormulario(fileInput);
     });
 }
@@ -359,4 +359,11 @@ function validaciones(columnaInicio, columnaFin) {
         return true;
     }
 
+}
+
+function regresarMenu(){
+
+    //location.reload();
+    window.location.href = "indexBienvenida.html";
+    
 }
