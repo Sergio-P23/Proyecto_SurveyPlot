@@ -12,8 +12,8 @@ function inicializarFormulario() {
 
     // captura el evento submit del formulario
     formulario.addEventListener("submit", function (event) {
-        //RECARGAR LA PAGINA
-        //event.preventDefault();
+        //EVITA RECARGAR LA PAGINA
+        event.preventDefault();
         procesarFormulario(fileInput);
     });
 }
