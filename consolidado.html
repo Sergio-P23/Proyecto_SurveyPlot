@@ -24,8 +24,9 @@
             <div class="row">
                 <h2 class="mb-3 text-center">Cargar Archivos Excel</h2>
                 <div class="col-md-6 p-5 pt-1 border-end">
-                    <!--mb=margin bottom -->
-                    <form id="inputsFormulario1">
+                    
+                    <!-- FORMULARIO 1 -->
+                    <form id="formulario1">
                         <!-- Campo de entrada para el nombre de la encuesta -->
                         <div class="mb-3">
                             <label for="nombreEncuesta" class="form-label">Nombre de la Encuesta</label>
@@ -45,25 +46,25 @@
                         <div class="mb-3">
                             <label for="columnaInicio" class="form-label">Columna primera pregunta (Ej: A, B,
                                 C...)</label>
-                            <input type="text" class="form-control text-uppercase" id="columnaInicio" maxlength="1"
+                            <input type="text" class="form-control text-uppercase" id="columnaInicio1" maxlength="1"
                                 placeholder="Ej: E" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="columnaFin" class="form-label">Columna ultima pregunta (Ej: D, E, F...)</label>
-                            <input type="text" class="form-control text-uppercase" id="columnaFin" maxlength="1"
+                            <input type="text" class="form-control text-uppercase" id="columnaFin1" maxlength="1"
                                 placeholder="Ej: M" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="filaInicio" class="form-label">Fila donde inician las respuestas</label>
-                            <input type="number" class="form-control" id="filaInicio" min="1" placeholder="Ej: 2"
+                            <input type="number" class="form-control" id="filaInicio1" min="1" placeholder="Ej: 2"
                                 required>
                         </div>
 
                         <div class="">
                             <label for="filaFin" class="form-label">Fila donde terminan las respuestas</label>
-                            <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 42"
+                            <input type="number" class="form-control" id="filaFin1" min="1" placeholder="Ej: 42"
                                 required>
                         </div>
                     </form>
@@ -71,8 +72,8 @@
 
 
                 <div class="col-md-6 p-5 pt-1 border-start">
-                    <!--mb=margin bottom -->
-                    <form id="inputsFormulario2">
+                    <!--FORMULARIO 2-->
+                    <form id="formulario2">
                         <!-- Campo de entrada para el nombre de la encuesta -->
                         <div class="mb-3">
                             <label for="nombreEncuesta" class="form-label">Nombre de la Encuesta</label>
@@ -92,25 +93,25 @@
                         <div class="mb-3">
                             <label for="columnaInicio" class="form-label">Columna primera pregunta (Ej: A, B,
                                 C...)</label>
-                            <input type="text" class="form-control text-uppercase" id="columnaInicio" maxlength="1"
+                            <input type="text" class="form-control text-uppercase" id="columnaInicio2" maxlength="1"
                                 placeholder="Ej: E" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="columnaFin" class="form-label">Columna ultima pregunta (Ej: D, E, F...)</label>
-                            <input type="text" class="form-control text-uppercase" id="columnaFin" maxlength="1"
+                            <input type="text" class="form-control text-uppercase" id="columnaFin2" maxlength="1"
                                 placeholder="Ej: M" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="filaInicio" class="form-label">Fila donde inician las respuestas</label>
-                            <input type="number" class="form-control" id="filaInicio" min="1" placeholder="Ej: 2"
+                            <input type="number" class="form-control" id="filaInicio2" min="1" placeholder="Ej: 2"
                                 required>
                         </div>
 
                         <div class="">
                             <label for="filaFin" class="form-label">Fila donde terminan las respuestas</label>
-                            <input type="number" class="form-control" id="filaFin" min="1" placeholder="Ej: 42"
+                            <input type="number" class="form-control" id="filaFin2" min="1" placeholder="Ej: 42"
                                 required>
                         </div>
 
@@ -123,7 +124,7 @@
 
             <div class="row">
                 <div class="col-12 p-3">
-                    <button type="submit" class="btn btn-primary w-100" style="font-weight: bold;">Generar
+                    <button type="button" class="btn btn-primary w-100" id="btnGenerarG" style="font-weight: bold;">Generar
                         graficas</button>
                 </div>
                 <div class="col-12">

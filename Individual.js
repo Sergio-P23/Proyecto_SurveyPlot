@@ -260,6 +260,12 @@ function generarGraficas(respuestas) {
     downloadButton.className = "btn btn-primary mt-4";
     downloadButton.onclick = generarPDF; // Asocia la función para generar el PDF
     container.appendChild(downloadButton);
+
+    const backmenu = document.createElement("button");
+    backmenu.textContent = "Regresar al menú";
+    backmenu.className = "btn btn-success mt-4 ml-2";
+    backmenu.onclick = regresarMenu; // Asocia la función para regresar al menú
+    container.appendChild(backmenu);
 }
 
 //promesa
@@ -327,6 +333,7 @@ function generarPDF() {
     pdf.save("graficas - " + nameEncuesta + ".pdf");
 }
 
+//validaciones de rangos
 function validaciones(columnaInicio, columnaFin) {
     // Arreglo de todas las letras del abecedario en strings
     const abecedario = [
