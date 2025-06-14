@@ -238,7 +238,7 @@ function generarGraficas(respuestas) {
                                 return data.labels.map((label, i) => {
                                     const value = data.datasets[0].data[i];
                                     return {
-                                        text: `${label}: ${value}`, // Muestra "Etiqueta: Valor"
+                                        text: `${label}: ${value} (${((value / data.datasets[0].data.reduce((a, b) => a + b, 0)) * 100).toFixed(0)}%)`, // Muestra "Etiqueta: Valor"
                                         fillStyle: data.datasets[0].backgroundColor[i],
                                         strokeStyle: data.datasets[0].borderColor,
                                         lineWidth: data.datasets[0].borderWidth,
