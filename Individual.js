@@ -156,8 +156,6 @@ function procesarRespuestas(datos, colInicio, colFin, filaInicio, filaFin) {
 
         respuestas.push(conteoRespuestas);
     }
-
-    mostrarResultadosConsola(respuestas, respuestasPosibles, filaInicio, filaFin);
     generarGraficas(respuestas);
 }
 
@@ -168,19 +166,6 @@ function inicializarConteoRespuestas(respuestasPosibles) {
         conteo[respuesta] = 0;
     });
     return conteo;
-}
-
-// Muestra los resultados en la consola
-function mostrarResultadosConsola(respuestas, respuestasPosibles, filaInicio, filaFin) {
-    console.log(respuestas);
-
-    respuestas.forEach((conteo, index) => {
-        console.log(`\nPregunta ${index + 1}:`);
-        respuestasPosibles.forEach(opcion => {
-            console.log(`${opcion}: ${conteo[opcion]}`);
-        });
-        console.log(`\nTotal: ${filaFin - filaInicio + 1}\n`);
-    });
 }
 
 // Genera las gráficas de las respuestas
