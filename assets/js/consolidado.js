@@ -9,16 +9,18 @@ let respuestasArchivo2 = null;
 
 //inicializar los formularios
 function inicializarFormularios() {
+    //elementos del DOM
     const formulario1 = document.getElementById("formulario1");
     const formulario2 = document.getElementById("formulario2");
 
     const fileInput1 = document.getElementById("fileInput1");
     const fileInput2 = document.getElementById("fileInput2");
 
+    // captura el evento submit del formulario
     document.getElementById("btnGenerarG").addEventListener("click", function (event) {
         let form2Valido = formulario2.reportValidity();
         let form1Valido = formulario1.reportValidity();
-
+        //alerta de archivos
         if (form1Valido && form2Valido) {
             if (fileInput1.files[0] === undefined && fileInput2.files[0] === undefined) {
                 Swal.fire({
@@ -51,8 +53,9 @@ function inicializarFormularios() {
     });
 }
 
-//lectua de rangos formularios
+//lectua de rangos formularios y extraccion de parametros
 function procesarFormularios(file1, file2) {
+    //parametros
     const colInicio1 = document.getElementById("columnaInicio1").value.toUpperCase();
     const colFin1 = document.getElementById("columnaFin1").value.toUpperCase();
     const filaInicio1 = parseInt(document.getElementById("filaInicio1").value);
@@ -63,6 +66,7 @@ function procesarFormularios(file1, file2) {
     const filaInicio2 = parseInt(document.getElementById("filaInicio2").value);
     const filaFin2 = parseInt(document.getElementById("filaFin2").value);
 
+    //alerta de validaciones columnas y filas 
     let val1 = validaciones1(colInicio1, colFin1);
     let val2 = validaciones2(colInicio2, colFin2);
 
@@ -219,9 +223,11 @@ function procesarRespuestas2(datos2, colInicio, colFin, filaInicio, filaFin) {
 function verificarYConsolidar() {
     if (respuestasArchivo1 !== null && respuestasArchivo2 !== null) {
         consolidarRespuestas(respuestasArchivo1, respuestasArchivo2);
+        AlertaProcesado();
     }
 }
 
+//procesamineto y unificacion de respuestas
 function consolidarRespuestas(arr1, arr2) {
     const respuestasPosibles = [
         "Totalmente en desacuerdo",
@@ -276,6 +282,35 @@ function mostrarResultadosConsolidados(respuestas, respuestasPosibles) {
     console.log(`\n=== TOTAL GENERAL: ${totalGeneral} ===`);
 }
 
+
+// Alterna entre las secciones del formulario y las gráficas
+function alternarSecciones() {
+    const formulario = document.getElementById("formulario-consolidado");
+    const graficas = document.getElementById("graficas");
+
+    formulario.classList.remove("ver");
+    formulario.classList.add("ocultar");
+
+    graficas.classList.remove("ocultar");
+    graficas.classList.add("ver");
+}
+
+// Muestra una alerta de éxito al procesar el archivo
+function AlertaProcesado() {
+    Swal.fire({
+        title: "¡Archivo procesado!",
+        text: "El archivo se procesó con éxito.",
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/845/845646.png",
+        imageWidth: 100,
+        imageHeight: 100,
+        imageAlt: "Éxito",
+        confirmButtonText: "ver graficas"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            alternarSecciones();
+        }
+    });
+}
 
 //validaciones de rangos
 function validaciones1(columnaInicio, columnaFin) {

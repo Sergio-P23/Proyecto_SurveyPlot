@@ -54,12 +54,7 @@ function procesarFormulario(fileInput) {
                 });
             }
         }
-
-
     }
-
-
-
 }
 
 // Lee el archivo seleccionado
@@ -80,25 +75,6 @@ function leerArchivo(file, colInicio, colFin, filInicio, filFin) {
     };
 
     reader.readAsArrayBuffer(file);
-}
-
-// Muestra una alerta de éxito al procesar el archivo
-function AlertaError() {
-    Swal.fire({
-        title: "problema",
-        text: "El archivo no se procesó correctamente.",
-
-        text: "El archivo se procesó con éxito.",
-        imageUrl: "https://cdn-icons-png.flaticon.com/512/845/845646.png",
-        imageWidth: 100,
-        imageHeight: 100,
-        imageAlt: "Éxito",
-        confirmButtonText: "ver graficas"
-    }).then((result) => {
-        if (result.isConfirmed) {
-            alternarSecciones();
-        }
-    });
 }
 
 // Muestra una alerta de éxito al procesar el archivo
